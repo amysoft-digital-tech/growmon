@@ -1,0 +1,27 @@
+<ion-header>
+	<ion-buttons slot="start">
+		<ion-back-button text="Previous" icon="caret-back"></ion-back-button>
+	</ion-buttons>
+	<ion-title>Item Detail</ion-title>
+</ion-header>
+<ion-content [fullscreen]="true">
+	
+	<ion-card>
+		<ion-card-header>
+		  {{this.id+' '+this.itemTitle}}
+		</ion-card-header>
+		<ion-card-content>
+			<ion-img src="{{this.imageSource}}"></ion-img>
+			<ion-grid>
+				<ion-row>
+					<ion-col>Seeds In Inventory:</ion-col>
+					<ion-col>5</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col>Per Plant Yield:</ion-col>
+					<ion-col>300 grams</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card-content>
+	</ion-card>
+</ion-content>

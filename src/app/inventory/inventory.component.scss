@@ -1,0 +1,18 @@
+:root {
+  --padding: 16px;
+}
+
+ion-item {
+  padding: var(--padding);
+
+}
+
+ion-item ion-thumbnail {
+  width: 64px;
+  height: 64px;
+  margin-right: 10px;
+}
+
+ion-item ion-label {
+  margin-left: var(--padding);
+}

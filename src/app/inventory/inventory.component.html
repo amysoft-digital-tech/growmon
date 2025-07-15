@@ -1,0 +1,62 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Inventory</ion-title>
+	</ion-toolbar>
+	<ion-toolbar>
+		<ion-list>
+			<ion-item class="item" (click)="addNewInventoryItem()" slot="end">
+				<ion-icon  className="center-right" name="add"></ion-icon>
+			</ion-item>
+			<ion-item>
+				<ion-select label="Category" placeholder="-- Select --">
+					<ion-select-option value="seeds">Seeds</ion-select-option>
+					<ion-select-option value="growcubes">Grow Cubes</ion-select-option>
+				</ion-select>
+			</ion-item>
+
+		</ion-list>
+		<ion-searchbar placeholder="Disabled In Dev!"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" role="feed">
+<ion-list>
+  <ion-item-sliding>
+    <ion-item-options side="start">
+      <ion-item-option color="success" expandable (click)="editInventoryItem('seeds', 1)">Edit</ion-item-option>
+    </ion-item-options>
+
+    <ion-item (click)="editInventoryItem('seeds', 1)">
+      <ion-thumbnail slot="start">
+		  <ion-img src="https://growdiaries.com/static/seed_item_photos/1803/7-auto-chocolate-skunk.jpg" />
+	  </ion-thumbnail>
+	  <ion-label>
+		  <h2>Chocolate Skunk Autogrow</h2>
+	  </ion-label>
+    </ion-item>
+
+    <ion-item-options side="end">      
+      <ion-item-option color="danger" expandable (click)="deleteInventoryItem()">Delete</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+  <ion-item-sliding>
+    <ion-item-options side="start">
+      <ion-item-option color="success" expandable (click)="editInventoryItem('seeds', 1)">Edit</ion-item-option>
+    </ion-item-options>
+
+    <ion-item (click)="editInventoryItem('seeds', 2)">
+      <ion-thumbnail slot="start">
+		  <ion-img src="https://growdiaries.com/static/seed_item_photos/1804/8-auto-northern-lights.jpg" />
+	  </ion-thumbnail>
+	  <ion-label>
+		  <h2>Northern Lights</h2>
+	  </ion-label>
+    </ion-item>
+
+    <ion-item-options side="end">      
+      <ion-item-option color="danger" expandable (click)="deleteInventoryItem()">Delete</ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding></ion-list>
+<ion-infinite-scroll>
+  <ion-infinite-scroll-content></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+</ion-content>

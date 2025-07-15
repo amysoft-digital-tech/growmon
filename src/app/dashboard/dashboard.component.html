@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+	<ion-grid>
+		<ion-row><ion-col><strong class="capitalize">Inventory</strong></ion-col></ion-row>
+		<ion-row class="ion-justify-content-between" *ngFor="let inventoryContainer of applicationData.inventory">
+			<ion-col size="6">{{inventoryContainer.title}} On Hand: </ion-col> 
+			<ion-col size="2">{{inventoryContainer.records.length}}</ion-col>
+		</ion-row>
+		<ion-row><ion-col><strong class="capitalize">Lots</strong></ion-col></ion-row>
+		<ion-row class="ion-justify-content-between" *ngFor="let phase of applicationData.phases">
+			<ion-col size="6">{{phase.name}}</ion-col> 
+			<ion-col size="2">{{phase.lotCount}}</ion-col>
+		</ion-row>
+		<ion-row><ion-col><strong class="capitalize">Statistics</strong></ion-col></ion-row>
+		<ion-row class="ion-justify-content-between" *ngFor="let statistic of applicationData.statistics">
+			<ion-col size="6">{{statistic.statisticTitle}}</ion-col> 
+			<ion-col size="2">{{statistic.statisticValue}}</ion-col>
+		</ion-row>
+    </ion-grid>
+</ion-content>

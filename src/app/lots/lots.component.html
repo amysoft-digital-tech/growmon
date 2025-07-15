@@ -1,0 +1,24 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Lots</ion-title>
+	</ion-toolbar>
+	<ion-toolbar>
+		<ion-list>
+			<ion-item>
+				<ion-select label="Bin" placeholder="-- Select --">
+					<ion-select-option value="seeds">Seeds</ion-select-option>
+					<ion-select-option value="germinating">Germinating</ion-select-option>
+					<ion-select-option value="starting">Starting</ion-select-option>
+					<ion-select-option value="growing_medium">Harvested</ion-select-option>
+					<ion-select-option value="starter_medium">Drying</ion-select-option>
+					<ion-select-option value="starter_medium">Curing</ion-select-option>
+					<ion-select-option value="starter_medium">Archived</ion-select-option>
+				</ion-select>
+			</ion-item>
+			<ion-item class="item" (click)="addNewLotItem()">
+				<ion-icon  className="center-right" name="add"></ion-icon>
+			</ion-item>
+		</ion-list>
+		<ion-searchbar placeholder="Disabled In Dev!"></ion-searchbar>
+	</ion-toolbar>
+</ion-header>

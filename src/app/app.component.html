@@ -3,9 +3,22 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
+          <ion-list-header>Growmon</ion-list-header>
+          <ion-note>user@growmon.app</ion-note>
+          <ion-item>
+            <ion-button (click)="refreshApp()" icon-only slot="end">
+              <ion-icon name="refresh-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="pushSubscription()" icon-only slot="end">
+              <ion-icon name="notifications-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="pushMessage()" icon-only slot="end">
+              <ion-icon name="send-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="pushUnsubscribe()" icon-only slot="end">
+              <ion-icon name="cloud-offline-outline"></ion-icon>
+            </ion-button>
+		      </ion-item>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>

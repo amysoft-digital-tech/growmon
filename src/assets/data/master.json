@@ -1,0 +1,48 @@
+{
+    "inventory": [
+        {
+        "title": "Seeds",
+        "records": [
+            {"name":"Chocolate Skunk",
+            "strain":"Indica",
+            "genetics":"SIR",
+            "flower type":"Autogrow",
+            "floweringTimeInDays":70,
+            "suggestedPlantYieldInGrams":126,
+            "quantityOnHand":5}]},
+        {
+        "title":"Grow Cubes",
+        "records": [{"name":"rooter", "quantityOnHand": 50}]},
+        {"title":"Grow Pots",
+        "records": [{"name":"rooter", "quantityOnHand": 50}]},
+        {"title":"Starter Pots",
+        "records": [{"name":"rooter", "quantityOnHand": 50}]}
+    ],
+    "lots": [{}],
+    "phases":[
+        {
+            "name":"Germinating",
+            "lotCount": 0,
+            "lastLotStartDate":"1",
+            "lastLotFinishDate":"1",
+            "lastLotYield": 400
+        },
+        {"name":"Starting",
+        "lotCount": 0},
+        {"name":"Growing",
+        "lotCount": 0},
+        {"name":"Harvested",
+        "lotCount": 0},
+        {"name":"Drying",
+        "lotCount": 0},
+        {"name":"Curing",
+        "lotCount": 0}
+    ],
+    "movements": [{}],
+    "statistics":[
+        {"statisticTitle": "Number Of Successful Grows", "statisticValue": 0},
+        {"statisticTitle": "Number Of Successful Harvests", "statisticValue": 0},
+        {"statisticTitle": "Total Grown To Date", "statisticValue": 9999},
+        {"statisticTitle": "Total Cured To Data", "statisticValue": 99999}
+    ]
+}
