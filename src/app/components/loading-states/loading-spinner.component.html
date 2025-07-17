@@ -1,0 +1,18 @@
+<div 
+  [class]="containerClass"
+  role="status" 
+  aria-live="polite"
+  *ngIf="loading()">
+  
+  <ion-spinner 
+    [name]="spinnerType" 
+    [color]="color">
+  </ion-spinner>
+  
+  <ion-text *ngIf="message" color="medium" class="loading-message">
+    {{ message }}
+  </ion-text>
+  
+  <!-- Screen reader only text -->
+  <span class="sr-only">Loading content, please wait</span>
+</div>

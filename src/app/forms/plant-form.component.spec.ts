@@ -116,6 +116,9 @@ describe('PlantFormComponent', () => {
       component.getControl('plantedDate').setValue('2024-01-01');
       component.plantForm.markAsTouched();
       
+      // Need to trigger change detection for signals to update
+      fixture.detectChanges();
+      
       expect(component.canSubmit()).toBe(true);
     });
   });
@@ -188,6 +191,9 @@ describe('PlantFormComponent', () => {
       component.getControl('plantedDate').setValue('2024-01-01');
       component.getControl('expectedHarvestWeeks').setValue(8);
       component.plantForm.markAsTouched();
+      
+      // Need to trigger change detection for signals to update
+      fixture.detectChanges();
       
       component.onSubmit();
       

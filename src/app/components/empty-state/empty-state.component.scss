@@ -1,0 +1,123 @@
+.empty-state-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  gap: 1.5rem;
+  min-height: 200px;
+  
+  &.empty-search {
+    .empty-icon {
+      color: var(--ion-color-tertiary);
+    }
+  }
+  
+  &.empty-error {
+    .empty-icon {
+      color: var(--ion-color-warning);
+    }
+  }
+  
+  &.empty-filter {
+    .empty-icon {
+      color: var(--ion-color-secondary);
+    }
+  }
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.7;
+}
+
+.empty-text {
+  .empty-title {
+    margin: 0;
+    
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+  
+  .empty-message {
+    margin: 0.5rem 0 0 0;
+    
+    p {
+      margin: 0;
+      font-size: 1rem;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+  }
+}
+
+.empty-actions {
+  width: 100%;
+  max-width: 300px;
+}
+
+.empty-action-button {
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .empty-state-container {
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+    
+    .empty-icon {
+      font-size: 3rem;
+    }
+    
+    .empty-text .empty-title h2 {
+      font-size: 1.25rem;
+    }
+    
+    .empty-text .empty-message p {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+// Animation for smooth entrance
+@keyframes empty-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.empty-state-container {
+  animation: empty-fade-in 0.4s ease-out;
+}

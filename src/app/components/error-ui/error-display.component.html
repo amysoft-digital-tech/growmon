@@ -1,0 +1,60 @@
+<div 
+  [class]="containerClass"
+  role="alert" 
+  aria-live="assertive"
+  *ngIf="error()">
+  
+  <div class="error-content">
+    <ion-icon 
+      [name]="errorIcon" 
+      color="danger" 
+      class="error-icon">
+    </ion-icon>
+    
+    <div class="error-text">
+      <ion-text color="danger" class="error-message">
+        <h3>{{ error()?.message }}</h3>
+      </ion-text>
+      
+      <ion-text 
+        *ngIf="showDetails && error()?.details" 
+        color="medium" 
+        class="error-details">
+        <p>{{ error()?.details }}</p>
+      </ion-text>
+      
+      <ion-text 
+        *ngIf="error()?.code" 
+        color="medium" 
+        class="error-code">
+        <small>Error Code: {{ error()?.code }}</small>
+      </ion-text>
+    </div>
+  </div>
+  
+  <div class="error-actions" *ngIf="retryable || dismissible">
+    <ion-button 
+      *ngIf="retryable"
+      fill="outline" 
+      size="small" 
+      color="primary"
+      class="retry-button"
+      (click)="onRetry()">
+      <ion-icon name="refresh-outline" slot="start"></ion-icon>
+      Try Again
+    </ion-button>
+    
+    <ion-button 
+      *ngIf="dismissible"
+      fill="clear" 
+      size="small" 
+      color="medium"
+      class="dismiss-button"
+      (click)="onDismiss()">
+      <ion-icon name="close-outline" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+  
+  <!-- Screen reader only text -->
+  <span class="sr-only">Error occurred: {{ error()?.message }}</span>
+</div>

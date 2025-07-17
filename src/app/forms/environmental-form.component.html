@@ -1,0 +1,268 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Environmental Reading</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="environmentalForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Quick Preset Buttons -->
+    <div class="preset-buttons ion-margin-bottom">
+      <ion-button 
+        fill="outline" 
+        size="small"
+        (click)="setVegetativePreset()"
+        color="success">
+        <ion-icon name="leaf-outline" slot="start"></ion-icon>
+        Vegetative Preset
+      </ion-button>
+      
+      <ion-button 
+        fill="outline" 
+        size="small"
+        (click)="setFloweringPreset()"
+        color="warning"
+        class="ion-margin-start">
+        <ion-icon name="flower-outline" slot="start"></ion-icon>
+        Flowering Preset
+      </ion-button>
+    </div>
+
+    <!-- Temperature -->
+    <ion-item [fill]="formFields.temperature.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.temperature.label"
+        [labelPlacement]="formFields.temperature.ionicProps?.labelPlacement"
+        [placeholder]="formFields.temperature.placeholder"
+        [type]="formFields.temperature.type"
+        formControlName="temperature"
+        [class.ion-invalid]="hasFieldError('temperature')"
+        [class.ion-touched]="getControl('temperature').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.temperature.ionicProps?.helperText && !hasFieldError('temperature')" 
+      [color]="temperatureStatus().color">
+      {{ formFields.temperature.ionicProps.helperText }} - Status: {{ temperatureStatus().status }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('temperature')" 
+      color="danger">
+      {{ getFieldError('temperature') }}
+    </ion-note>
+
+    <!-- Humidity -->
+    <ion-item [fill]="formFields.humidity.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.humidity.label"
+        [labelPlacement]="formFields.humidity.ionicProps?.labelPlacement"
+        [placeholder]="formFields.humidity.placeholder"
+        [type]="formFields.humidity.type"
+        formControlName="humidity"
+        [class.ion-invalid]="hasFieldError('humidity')"
+        [class.ion-touched]="getControl('humidity').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.humidity.ionicProps?.helperText && !hasFieldError('humidity')" 
+      [color]="humidityStatus().color">
+      {{ formFields.humidity.ionicProps.helperText }} - Status: {{ humidityStatus().status }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('humidity')" 
+      color="danger">
+      {{ getFieldError('humidity') }}
+    </ion-note>
+
+    <!-- pH Level -->
+    <ion-item [fill]="formFields.ph.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.ph.label"
+        [labelPlacement]="formFields.ph.ionicProps?.labelPlacement"
+        [placeholder]="formFields.ph.placeholder"
+        [type]="formFields.ph.type"
+        formControlName="ph"
+        [class.ion-invalid]="hasFieldError('ph')"
+        [class.ion-touched]="getControl('ph').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.ph.ionicProps?.helperText && !hasFieldError('ph')" 
+      [color]="phStatus().color">
+      {{ formFields.ph.ionicProps.helperText }} - Status: {{ phStatus().status }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('ph')" 
+      color="danger">
+      {{ getFieldError('ph') }}
+    </ion-note>
+
+    <!-- Light Intensity (Optional) -->
+    <ion-item [fill]="formFields.lightIntensity.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.lightIntensity.label"
+        [labelPlacement]="formFields.lightIntensity.ionicProps?.labelPlacement"
+        [placeholder]="formFields.lightIntensity.placeholder"
+        [type]="formFields.lightIntensity.type"
+        formControlName="lightIntensity"
+        [class.ion-invalid]="hasFieldError('lightIntensity')"
+        [class.ion-touched]="getControl('lightIntensity').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.lightIntensity.ionicProps?.helperText && !hasFieldError('lightIntensity')" 
+      color="medium">
+      {{ formFields.lightIntensity.ionicProps.helperText }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('lightIntensity')" 
+      color="danger">
+      {{ getFieldError('lightIntensity') }}
+    </ion-note>
+
+    <!-- CO2 Level (Optional) -->
+    <ion-item [fill]="formFields.co2Level.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.co2Level.label"
+        [labelPlacement]="formFields.co2Level.ionicProps?.labelPlacement"
+        [placeholder]="formFields.co2Level.placeholder"
+        [type]="formFields.co2Level.type"
+        formControlName="co2Level"
+        [class.ion-invalid]="hasFieldError('co2Level')"
+        [class.ion-touched]="getControl('co2Level').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.co2Level.ionicProps?.helperText && !hasFieldError('co2Level')" 
+      color="medium">
+      {{ formFields.co2Level.ionicProps.helperText }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('co2Level')" 
+      color="danger">
+      {{ getFieldError('co2Level') }}
+    </ion-note>
+
+    <!-- Timestamp -->
+    <ion-item [fill]="formFields.timestamp.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.timestamp.label"
+        [labelPlacement]="formFields.timestamp.ionicProps?.labelPlacement"
+        [placeholder]="formFields.timestamp.placeholder"
+        [type]="formFields.timestamp.type"
+        formControlName="timestamp"
+        [class.ion-invalid]="hasFieldError('timestamp')"
+        [class.ion-touched]="getControl('timestamp').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="hasFieldError('timestamp')" 
+      color="danger">
+      {{ getFieldError('timestamp') }}
+    </ion-note>
+
+    <!-- Environmental Status Summary -->
+    <ion-card *ngIf="formTouched()">
+      <ion-card-header>
+        <ion-card-title>Environmental Status</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Temperature</h3>
+              <p>
+                {{ formValue().temperature }}°C
+                <ion-badge [color]="temperatureStatus().color" class="ion-margin-start">
+                  {{ temperatureStatus().status }}
+                </ion-badge>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Humidity</h3>
+              <p>
+                {{ formValue().humidity }}%
+                <ion-badge [color]="humidityStatus().color" class="ion-margin-start">
+                  {{ humidityStatus().status }}
+                </ion-badge>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>pH Level</h3>
+              <p>
+                {{ formValue().ph }}
+                <ion-badge [color]="phStatus().color" class="ion-margin-start">
+                  {{ phStatus().status }}
+                </ion-badge>
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="formValue().lightIntensity">
+            <ion-label>
+              <h3>Light Intensity</h3>
+              <p>{{ formValue().lightIntensity }} PPFD</p>
+            </ion-label>
+          </ion-item>
+          <ion-item *ngIf="formValue().co2Level">
+            <ion-label>
+              <h3>CO₂ Level</h3>
+              <p>{{ formValue().co2Level }} ppm</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Action Buttons -->
+    <div class="ion-padding-top">
+      <ion-button 
+        expand="block" 
+        type="submit"
+        [disabled]="!canSubmit()"
+        color="primary">
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        Record Reading
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        color="medium"
+        (click)="resetForm()"
+        class="ion-margin-top">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Reset Form
+      </ion-button>
+    </div>
+
+    <!-- Debug Info (for development) -->
+    <ion-card *ngIf="formTouched()">
+      <ion-card-header>
+        <ion-card-title>Debug Info</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <pre>{{ formValue() | json }}</pre>
+        <p><strong>Can Submit:</strong> {{ canSubmit() }}</p>
+        <p><strong>Form Valid:</strong> {{ formValid() }}</p>
+        <p><strong>Form Touched:</strong> {{ formTouched() }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </form>
+</ion-content>

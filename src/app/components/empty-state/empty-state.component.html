@@ -1,0 +1,39 @@
+<div 
+  [class]="containerClass"
+  role="status" 
+  aria-live="polite"
+  *ngIf="isEmpty()">
+  
+  <div class="empty-content">
+    <ion-icon 
+      [name]="defaultIcon" 
+      color="medium" 
+      class="empty-icon">
+    </ion-icon>
+    
+    <div class="empty-text">
+      <ion-text color="dark" class="empty-title">
+        <h2>{{ title }}</h2>
+      </ion-text>
+      
+      <ion-text color="medium" class="empty-message">
+        <p>{{ message }}</p>
+      </ion-text>
+    </div>
+  </div>
+  
+  <div class="empty-actions" *ngIf="actionText">
+    <ion-button 
+      expand="block" 
+      fill="outline" 
+      color="primary"
+      class="empty-action-button"
+      (click)="onActionClick()">
+      <ion-icon name="add-outline" slot="start"></ion-icon>
+      {{ actionText }}
+    </ion-button>
+  </div>
+  
+  <!-- Screen reader only text -->
+  <span class="sr-only">No content available. {{ message }}</span>
+</div>

@@ -1,0 +1,44 @@
+.preset-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  
+  ion-button {
+    --border-radius: 8px;
+  }
+}
+
+ion-card {
+  margin: 1rem 0;
+  
+  ion-card-header {
+    padding-bottom: 0.5rem;
+  }
+  
+  ion-card-content {
+    padding-top: 0.5rem;
+  }
+}
+
+ion-note {
+  margin: 0.25rem 0 1rem 1rem;
+  font-size: 0.75rem;
+}
+
+ion-badge {
+  text-transform: capitalize;
+  font-size: 0.7rem;
+}
+
+.debug-info {
+  margin-top: 2rem;
+  
+  pre {
+    font-size: 0.7rem;
+    max-height: 200px;
+    overflow-y: auto;
+    background: var(--ion-color-light);
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}
