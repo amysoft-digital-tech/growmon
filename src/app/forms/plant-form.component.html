@@ -1,0 +1,199 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Add New Plant</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="plantForm" (ngSubmit)="onSubmit()">
+    
+    <!-- Plant Name -->
+    <ion-item [fill]="formFields.name.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.name.label"
+        [labelPlacement]="formFields.name.ionicProps?.labelPlacement"
+        [placeholder]="formFields.name.placeholder"
+        [type]="formFields.name.type"
+        [clearInput]="formFields.name.ionicProps?.clearInput"
+        formControlName="name"
+        [class.ion-invalid]="hasFieldError('name')"
+        [class.ion-touched]="getControl('name').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.name.ionicProps?.helperText && !hasFieldError('name')" 
+      color="medium">
+      {{ formFields.name.ionicProps.helperText }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('name')" 
+      color="danger">
+      {{ getFieldError('name') }}
+    </ion-note>
+
+    <!-- Strain -->
+    <ion-item [fill]="formFields.strain.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.strain.label"
+        [labelPlacement]="formFields.strain.ionicProps?.labelPlacement"
+        [placeholder]="formFields.strain.placeholder"
+        [type]="formFields.strain.type"
+        [clearInput]="formFields.strain.ionicProps?.clearInput"
+        formControlName="strain"
+        [class.ion-invalid]="hasFieldError('strain')"
+        [class.ion-touched]="getControl('strain').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="hasFieldError('strain')" 
+      color="danger">
+      {{ getFieldError('strain') }}
+    </ion-note>
+
+    <!-- Source -->
+    <ion-item [fill]="formFields.source.ionicProps?.fill">
+      <ion-select 
+        [label]="formFields.source.label"
+        [labelPlacement]="formFields.source.ionicProps?.labelPlacement"
+        [placeholder]="formFields.source.placeholder"
+        formControlName="source"
+        [class.ion-invalid]="hasFieldError('source')"
+        [class.ion-touched]="getControl('source').touched">
+        <ion-select-option value="seed">Seed</ion-select-option>
+        <ion-select-option value="clone">Clone</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="hasFieldError('source')" 
+      color="danger">
+      {{ getFieldError('source') }}
+    </ion-note>
+
+    <!-- Planted Date -->
+    <ion-item [fill]="formFields.plantedDate.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.plantedDate.label"
+        [labelPlacement]="formFields.plantedDate.ionicProps?.labelPlacement"
+        [placeholder]="formFields.plantedDate.placeholder"
+        [type]="formFields.plantedDate.type"
+        formControlName="plantedDate"
+        [class.ion-invalid]="hasFieldError('plantedDate')"
+        [class.ion-touched]="getControl('plantedDate').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="hasFieldError('plantedDate')" 
+      color="danger">
+      {{ getFieldError('plantedDate') }}
+    </ion-note>
+
+    <!-- Expected Harvest Weeks -->
+    <ion-item [fill]="formFields.expectedHarvestWeeks.ionicProps?.fill">
+      <ion-input
+        [label]="formFields.expectedHarvestWeeks.label"
+        [labelPlacement]="formFields.expectedHarvestWeeks.ionicProps?.labelPlacement"
+        [placeholder]="formFields.expectedHarvestWeeks.placeholder"
+        [type]="formFields.expectedHarvestWeeks.type"
+        formControlName="expectedHarvestWeeks"
+        [class.ion-invalid]="hasFieldError('expectedHarvestWeeks')"
+        [class.ion-touched]="getControl('expectedHarvestWeeks').touched">
+      </ion-input>
+    </ion-item>
+    
+    <ion-note 
+      *ngIf="formFields.expectedHarvestWeeks.ionicProps?.helperText && !hasFieldError('expectedHarvestWeeks')" 
+      color="medium">
+      {{ formFields.expectedHarvestWeeks.ionicProps.helperText }}
+    </ion-note>
+    
+    <ion-note 
+      *ngIf="hasFieldError('expectedHarvestWeeks')" 
+      color="danger">
+      {{ getFieldError('expectedHarvestWeeks') }}
+    </ion-note>
+
+    <!-- Notes -->
+    <ion-item [fill]="formFields.notes.ionicProps?.fill">
+      <ion-textarea
+        [label]="formFields.notes.label"
+        [labelPlacement]="formFields.notes.ionicProps?.labelPlacement"
+        [placeholder]="formFields.notes.placeholder"
+        formControlName="notes"
+        [rows]="3"
+        [class.ion-invalid]="hasFieldError('notes')"
+        [class.ion-touched]="getControl('notes').touched">
+      </ion-textarea>
+    </ion-item>
+
+    <!-- Form Summary -->
+    <ion-card *ngIf="estimatedHarvestDate()">
+      <ion-card-header>
+        <ion-card-title>Plant Summary</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Estimated Harvest Date</h3>
+              <p>{{ estimatedHarvestDate() }}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Form Status</h3>
+              <p>
+                <ion-badge [color]="formValid() ? 'success' : 'warning'">
+                  {{ formValid() ? 'Valid' : 'Invalid' }}
+                </ion-badge>
+                <ion-badge [color]="formTouched() ? 'primary' : 'medium'" class="ion-margin-start">
+                  {{ formTouched() ? 'Touched' : 'Pristine' }}
+                </ion-badge>
+              </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Action Buttons -->
+    <div class="ion-padding-top">
+      <ion-button 
+        expand="block" 
+        type="submit"
+        [disabled]="!canSubmit()"
+        color="primary">
+        <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+        Add Plant
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        color="medium"
+        (click)="resetForm()"
+        class="ion-margin-top">
+        <ion-icon name="refresh-outline" slot="start"></ion-icon>
+        Reset Form
+      </ion-button>
+    </div>
+
+    <!-- Debug Info (for development) -->
+    <ion-card *ngIf="formTouched()">
+      <ion-card-header>
+        <ion-card-title>Debug Info</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <pre>{{ formValue() | json }}</pre>
+        <p><strong>Can Submit:</strong> {{ canSubmit() }}</p>
+        <p><strong>Form Valid:</strong> {{ formValid() }}</p>
+        <p><strong>Form Touched:</strong> {{ formTouched() }}</p>
+      </ion-card-content>
+    </ion-card>
+
+  </form>
+</ion-content>
